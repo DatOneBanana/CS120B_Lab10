@@ -61,8 +61,7 @@ int tick(int state){
 
 int main(void) {
     /* Insert DDR and PORT initializations */
-	DDRB = 0xFF; PORTB = 0x00;
-	DDRC = 0xF0; PORTC = 0x0F;	
+	DDRB = 0xFF; PORTB = 0x00;	
     /* Insert your solution below */
 	static task task1;
 	task *tasks[] = { &task1 };
