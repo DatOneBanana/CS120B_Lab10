@@ -20,13 +20,13 @@
 int outputA = 0x00;
 
 
-enum STATES{Start,keyCases}state;
+enum STATES{StartTask1,keyCases}state;
 
 int tick(int state){
 	unsigned char y;
 	y = GetKeypadKey();
 	switch(state){
-		case Start:
+		case StartTask1:
 			state = keyCases;
 			break;
 		case keyCases:
@@ -70,9 +70,8 @@ int main(void) {
 
 	unsigned char GCD = 10; //temp value
 
-	const char start = -1;
 
-	task1.state = start;
+	task1.state = StartTask1;
 	task1.period = 100;
 	task1.elapsedTime = task1.period;
 	task1.TickFct = &tick;
