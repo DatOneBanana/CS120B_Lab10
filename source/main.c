@@ -20,15 +20,12 @@
 int outputA = 0x00;
 
 
-enum STATES{StartTask1,keyCases}state;
+enum STATES{keyCases}state;
 
 int tick(int state){
 	unsigned char y;
 	y = GetKeypadKey();
 	switch(state){
-		case StartTask1:
-			state = keyCases;
-			break;
 		case keyCases:
 		switch(y) {
 				case '\0': outputA = 0x1F; break;
@@ -60,9 +57,9 @@ int tick(int state){
 
 
 int main(void) {
-    /* Insert DDR and PORT initializations */
+    
 	DDRB = 0xFF; PORTB = 0x00;	
-    /* Insert your solution below */
+    	DDRC = 0xF0; PORTC = 0x0F;
 	static task task1;
 	task *tasks[] = { &task1 };
 	const unsigned short numTasks = sizeof(tasks)/sizeof(task*);
@@ -70,7 +67,7 @@ int main(void) {
 	unsigned char GCD = 10; //temp value
 
 
-	task1.state = StartTask1;
+	task1.state = 0;
 	task1.period = 100;
 	task1.elapsedTime = task1.period;
 	task1.TickFct = &tick;
